@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.icon-rotate {
+  transition: transform 0.5s ease; /* Ajoute une transition pour un effet en douceur */
+}
+
+.icon-rotate:hover {
+  transform: rotate(360deg);
+}
+
+.image {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+}
