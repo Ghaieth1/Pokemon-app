@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Line } from "react-chartjs-2";
+import { Link, useParams } from "react-router-dom";
 
 const PokemonCard = () => {
   const { id } = useParams();
@@ -21,6 +22,15 @@ const PokemonCard = () => {
     <div className="bg-white p-8 rounded-md border-8 border-white-500 shadow-2xl w-2/3 mx-auto my-8">
       <div className="text-center mb-4">
         <h2 className="text-3xl font-bold capitalize">{name}</h2>
+        <Link to="/" className="inline-block ">
+          <div className="w-12 icon-rotate">
+            <img
+              src="/src/assets/télécharger.png"
+              alt="home"
+              className="w-full h-auto"
+            />
+          </div>
+        </Link>
         <img
           src={sprites.front_default}
           alt={name}

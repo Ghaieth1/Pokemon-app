@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Pokemons from "./components/Pokemons";
 
@@ -61,11 +60,11 @@ function Home() {
           <img src="/src/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
         <div className="flex justify-center gap-5 mt-40">
-          <Link to="/pokemons">
+          <a href="/pokemons">
             <button className="inline-block px-4 py-2 text-lg text-white font-bold rounded-md bg-blue-500 border-2 border-yellow-500 shadow-md transition-all duration-300 ease-in-out hover:bg-yellow-500 hover:text-blue-500 transform hover:scale-105 ">
               Pokemons
             </button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

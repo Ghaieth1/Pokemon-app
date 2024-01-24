@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 
@@ -12,39 +12,81 @@ const Pokemons = () => {
     return data;
   };
 
+  const getTypeCard = (type) => {
+    let cardColor = "";
+
+    if (type === "grass") {
+      cardColor = "bg-green-200";
+    } else if (type === "fire") {
+      cardColor = "bg-red-200";
+    } else if (type === "water") {
+      cardColor = "bg-blue-200";
+    } else if (type === "bug") {
+      cardColor = "bg-lime-300";
+    } else if (type === "normal") {
+      cardColor = "bg-gray-300";
+    } else if (type === "poison") {
+      cardColor = "bg-purple-400";
+    } else if (type === "electric") {
+      cardColor = "bg-yellow-300";
+    } else if (type === "ground") {
+      cardColor = "bg-yellow-900";
+    } else if (type === "fairy") {
+      cardColor = "bg-pink-300";
+    } else if (type === "fighting") {
+      cardColor = "bg-red-400";
+    } else if (type === "psychic") {
+      cardColor = "bg-pink-700";
+    } else if (type === "rock") {
+      cardColor = "bg-yellow-700";
+    } else if (type === "ghost") {
+      cardColor = "bg-purple-500";
+    } else if (type === "ice") {
+      cardColor = "bg-blue-400";
+    } else if (type === "dragon") {
+      cardColor = "bg-blue-700";
+    } else if (type === "steel") {
+      cardColor = "bg-gray-500";
+    } else if (type === "flying") {
+      cardColor = "bg-blue-300";
+    }
+
+    return cardColor;
+  };
+
   const getTypeButton = (type) => {
     let typeColor = "";
 
     if (type === "grass") {
       typeColor = "bg-green-400";
     } else if (type === "fire") {
-      typeColor = "bg-red-500";
+      typeColor = "bg-orange-500";
     } else if (type === "water") {
       typeColor = "bg-blue-400";
     } else if (type === "bug") {
-      typeColor = "bg-green-500";
+      typeColor = "bg-lime-500";
     } else if (type === "normal") {
       typeColor = "bg-gray-400";
     } else if (type === "poison") {
-      typeColor = "bg-purple-400";
+      typeColor = "bg-purple-600";
     } else if (type === "electric") {
       typeColor = "bg-yellow-400";
     } else if (type === "ground") {
-      typeColor = "bg-yellow-500";
+      typeColor = "bg-yellow-700";
     } else if (type === "fairy") {
-      typeColor = "bg-pink-400";
+      typeColor = "bg-pink-500";
     } else if (type === "fighting") {
       typeColor = "bg-red-600";
     } else if (type === "psychic") {
-      typeColor = "bg-pink-500";
+      typeColor = "bg-pink-400";
     } else if (type === "rock") {
       typeColor = "bg-yellow-600";
     } else if (type === "ghost") {
-      typeColor = "bg-purple-500";
+      typeColor = "bg-purple-400";
     } else if (type === "ice") {
       typeColor = "bg-blue-500";
     } else if (type === "dragon") {
-      typeColor = "bg-purple-600";
+      typeColor = "bg-blue-800";
     } else if (type === "dark") {
       typeColor = "bg-gray-600";
     } else if (type === "steel") {
@@ -76,14 +118,17 @@ const Pokemons = () => {
   }, []);
 
   useEffect(() => {
-    fetchAllPokemonTypes().then((types) => {
+    const fetchData = async () => {
+      const types = await fetchAllPokemonTypes();
       setPokemons((prevPokemons) =>
         prevPokemons.map((pokemon, index) => ({
           ...pokemon,
           type: types[index],
         }))
       );
-    });
+    };
+
+    fetchData();
   }, [pokemons]);
 
   const filteredPokemons = pokemons.filter((pokemon) =>
@@ -151,7 +196,21 @@ const Pokemons = () => {
 
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center pl-3 pointer-events-none">
-              {/* ... (rest of the component) */}
+              <svg
+                className="w-5 h-5 text-black"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
             </div>
             <input
               type="text"
@@ -163,53 +222,61 @@ const Pokemons = () => {
           </div>
 
           <div className="grid grid-cols-4 gap-5 mt-10">
-            {filteredPokemons.map((pokemon) => (
-              <div
-                key={pokemon.name}
-                className="bg-yellow-50 rounded-3xl p-4 w-72 h-[450px] mx-auto my-auto relative overflow-hidden mb-10"
-                style={{
-                  boxShadow:
-                    "10px 17px 5px -5px black, 15px 10px 5px -5px black",
-                }}
-              >
-                <Link
-                  to={`/pokemons/${pokemon.url && pokemon.url.split("/")[6]}`}
+            {filteredPokemons.map((pokemon) => {
+              return (
+                <div
+                  key={pokemon.name}
+                  className={`rounded-3xl p-4 w-72 h-[450px] mx-auto my-auto relative overflow-hidden mb-10 ${getTypeCard(
+                    pokemon.type && pokemon.type.split(", ")[0]
+                  )}`}
+                  style={{
+                    boxShadow:
+                      "10px 17px 5px -5px black, 15px 10px 5px -5px black",
+                  }}
                 >
-                  <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-                      pokemon.url.split("/")[6]
-                    }.svg`}
-                    alt={pokemon.name}
-                    className="w-56 h-48 mx-auto mb-2 mt-20"
-                  />
-                </Link>
+                  <p className="text-center text-lg font-bold mt-[-5px]">
+                    #
+                    {String(pokemon.url && pokemon.url.split("/")[6]).padStart(
+                      3,
+                      "0"
+                    )}
+                  </p>
+                  <Link
+                    to={`/pokemons/${pokemon.url && pokemon.url.split("/")[6]}`}
+                  >
+                    <img
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+                        pokemon.url.split("/")[6]
+                      }.svg`}
+                      alt={pokemon.name}
+                      className="w-56 h-48 mx-auto mb-2 mt-20"
+                    />
+                  </Link>
 
-                <p className="text-center text-sm font-bold">
-                  #
-                  {String(pokemon.url && pokemon.url.split("/")[6]).padStart(
-                    3,
-                    "0"
-                  )}
-                </p>
-                <p className="text-center text-sm font-bold mb-10">
-                  {pokemon.name}
-                </p>
+                  <p className="text-center  font-bold mb-8 capitalize text-lg underline underline-offset-4">
+                    {pokemon.name}
+                  </p>
 
-                <div className="flex justify-center space-x-5">
-                  {pokemon.type &&
-                    pokemon.type.split(", ").map((type) => (
-                      <div
-                        key={type}
-                        className={`rounded-md p-2 text-white ${getTypeButton(
-                          type
-                        )}`}
-                      >
-                        {type}
-                      </div>
-                    ))}
+                  <div className="flex justify-center space-x-5">
+                    {pokemon.type &&
+                      pokemon.type.split(", ").map((type) => (
+                        <div
+                          key={type}
+                          className={`rounded-3xl p-3 shadow-2xl w-20 text-center capitalize ${getTypeButton(
+                            type
+                          )}`}
+                          style={{
+                            boxShadow:
+                              "10px 10px 5px -5px black, 5px 10px 10px -5px black",
+                          }}
+                        >
+                          {type}
+                        </div>
+                      ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
