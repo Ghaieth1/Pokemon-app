@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Pokemons from "./components/Pokemons";
 
 import PokemonInfos from "./components/PokemonInfos";
@@ -59,11 +59,14 @@ function Home() {
         <div className="w-1/3 mx-auto h-2/4 mt-[-110px]">
           <img src="/src/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
-        <div className="flex justify-center gap-5 mt-40">
+        <div className="flex justify-center gap-5 mt-40 w-40 mx-auto">
           <a href="/pokemons">
-            <button className="inline-block px-4 py-2 text-lg text-white font-bold rounded-md bg-blue-500 border-2 border-yellow-500 shadow-md transition-all duration-300 ease-in-out hover:bg-yellow-500 hover:text-blue-500 transform hover:scale-105 ">
-              Pokemons
-            </button>
+            <img
+              src="/src/assets/1033032.png"
+              alt=""
+              className="hover:translate-x-2 transition-transform duration-100
+              "
+            />
           </a>
         </div>
       </div>

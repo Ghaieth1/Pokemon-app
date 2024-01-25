@@ -17,3 +17,17 @@
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
 }
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-animation {
+  transition: transform 0.5s ease-in-out;
+}
+
+.rotate-animation:hover {
+  animation: rotate 1s infinite linear;
+}

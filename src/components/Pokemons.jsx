@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import "../index.css";
 
 const Pokemons = () => {
@@ -16,39 +16,39 @@ const Pokemons = () => {
     let cardColor = "";
 
     if (type === "grass") {
-      cardColor = "bg-green-200";
+      cardColor = "bg-gradient-to-b from-green-300 to-green-200";
     } else if (type === "fire") {
-      cardColor = "bg-red-200";
+      cardColor = "bg-gradient-to-b from-red-300 to-red-200";
     } else if (type === "water") {
-      cardColor = "bg-blue-200";
+      cardColor = "bg-gradient-to-b from-blue-300 to-blue-200";
     } else if (type === "bug") {
-      cardColor = "bg-lime-300";
+      cardColor = "bg-gradient-to-b from-lime-400 to-lime-300";
     } else if (type === "normal") {
-      cardColor = "bg-gray-300";
+      cardColor = "bg-gradient-to-b from-gray-400 to-gray-300";
     } else if (type === "poison") {
-      cardColor = "bg-purple-400";
+      cardColor = "bg-gradient-to-b from-purple-500 to-purple-400";
     } else if (type === "electric") {
-      cardColor = "bg-yellow-300";
+      cardColor = "bg-gradient-to-b from-yellow-400 to-yellow-300";
     } else if (type === "ground") {
-      cardColor = "bg-yellow-900";
+      cardColor = "bg-gradient-to-b from-yellow-800 to-yellow-900";
     } else if (type === "fairy") {
-      cardColor = "bg-pink-300";
+      cardColor = "bg-gradient-to-b from-pink-300 to-pink-300";
     } else if (type === "fighting") {
-      cardColor = "bg-red-400";
+      cardColor = "bg-gradient-to-b from-red-500 to-red-400";
     } else if (type === "psychic") {
-      cardColor = "bg-pink-700";
+      cardColor = "bg-gradient-to-b from-pink-600 to-pink-500";
     } else if (type === "rock") {
-      cardColor = "bg-yellow-700";
+      cardColor = "bg-gradient-to-b from-yellow-600 to-yellow-700";
     } else if (type === "ghost") {
-      cardColor = "bg-purple-500";
+      cardColor = "bg-gradient-to-b from-purple-400 to-purple-500";
     } else if (type === "ice") {
-      cardColor = "bg-blue-400";
+      cardColor = "bg-gradient-to-b from-blue-500 to-blue-400";
     } else if (type === "dragon") {
-      cardColor = "bg-blue-700";
+      cardColor = "bg-gradient-to-b from-blue-600 to-blue-500";
     } else if (type === "steel") {
-      cardColor = "bg-gray-500";
+      cardColor = "bg-gradient-to-b from-gray-400 to-gray-500";
     } else if (type === "flying") {
-      cardColor = "bg-blue-300";
+      cardColor = "bg-gradient-to-b from-blue-300 to-blue-300";
     }
 
     return cardColor;
@@ -182,7 +182,7 @@ const Pokemons = () => {
             </svg>
           </div>
         </div>
-        <Link to="/" className="inline-block ">
+        <a href="/" className="inline-block ">
           <div className="w-12 icon-rotate">
             <img
               src="/src/assets/télécharger.png"
@@ -190,7 +190,7 @@ const Pokemons = () => {
               className="w-full h-auto"
             />
           </div>
-        </Link>
+        </a>
         <div className="mx-auto mt-5 mb-8 p-5 rounded-md w-full">
           <div className="flex items-center mb-4"></div>
 
@@ -241,8 +241,10 @@ const Pokemons = () => {
                       "0"
                     )}
                   </p>
-                  <Link
-                    to={`/pokemons/${pokemon.url && pokemon.url.split("/")[6]}`}
+                  <a
+                    href={`/pokemons/${
+                      pokemon.url && pokemon.url.split("/")[6]
+                    }`}
                   >
                     <img
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
@@ -251,7 +253,7 @@ const Pokemons = () => {
                       alt={pokemon.name}
                       className="w-56 h-48 mx-auto mb-2 mt-20"
                     />
-                  </Link>
+                  </a>
 
                   <p className="text-center  font-bold mb-8 capitalize text-lg underline underline-offset-4">
                     {pokemon.name}
