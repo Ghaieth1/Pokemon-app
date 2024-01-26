@@ -5,11 +5,38 @@ import "../index.css";
 const PokemonInfos = () => {
   const { id } = useParams();
   const [pokemonInfos, setPokemonInfos] = useState(null);
+  const [description, setDescription] = useState("Loading...");
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then((response) => response.json())
-      .then((data) => setPokemonInfos(data));
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const data = await response.json();
+        setPokemonInfos(data);
+
+        const speciesResponse = await fetch(
+          `https://pokeapi.co/api/v2/pokemon-species/${id}/`
+        );
+        const speciesData = await speciesResponse.json();
+
+        // Trouver la première description en anglais
+        const englishDescription = speciesData.flavor_text_entries.find(
+          (entry) => entry.language.name === "en"
+        );
+
+        // Utiliser la description ou afficher un message par défaut
+        setDescription(
+          englishDescription
+            ? englishDescription.flavor_text.replace(" ^ ", "")
+            : "No description available"
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setDescription("Error fetching description");
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   if (!pokemonInfos) {
@@ -109,7 +136,7 @@ const PokemonInfos = () => {
 
   return (
     <div className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-500 to-blue-800 h-screen">
-      <div className="bg-white rounded-lg border-8 border-white-500 shadow-2xl w-2/3 mx-auto my-8 h-2/3 grid grid-cols-2 ">
+      <div className="bg-white rounded-lg border-8 border-white-500 shadow-2xl w-2/3 mx-auto my-8 h-2/3 grid grid-cols-2">
         {/* Côté gauche (Image) */}
         <div className="bg-gray-100 w-full">
           <img
@@ -121,8 +148,8 @@ const PokemonInfos = () => {
 
         {/* Côté droit (Titre, Type, Stats) */}
         <div
-          className="grid grid-rows-[40%,60%] gap-4 w-full "
-          style={{ boxShadow: "-6spx 0 5px -5px gray" }}
+          className="grid grid-rows-[40%,60%] gap-4 w-full"
+          style={{ boxShadow: "-4px 0 5px -5px black" }}
         >
           {/* Partie supérieure (Titre, Type et ID) */}
           <div
@@ -151,45 +178,68 @@ const PokemonInfos = () => {
             </div>
           </div>
 
-          {/* Partie inférieure (Stats) */}
-          <div className="grid grid-cols-1 w-full">
-            <div className="text-start ml-10">
-              <p className="text-lg">
-                <span className="font-semibold capitalize">Height:</span>{" "}
-                {height / 10} m
-              </p>
+          {/* Partie inférieure (Stats, Description) */}
+          <div>
+            <div className="flex flex-wrap justify-start mt-[-16px] w-full">
+              <div className="flex gap-14 rounded-lg bg-gray-100 h-24 p-5 w-full relative">
+                <div className="text-center">
+                  <p className="text-lg capitalize text-gray-500 ml-5">
+                    Height
+                  </p>
+                  <p className="text-xl font-semibold ml-5">{height / 10} m</p>
+                </div>
+                <div className="border-r border-gray-300 h-full"></div>
 
-              <div className="text-start ">
-                <p className="text-lg">
-                  <span className="font-semibold capitalize">Weight:</span>{" "}
-                  {weight / 10} kg
-                </p>
+                <div className="text-center">
+                  <p className="text-lg text-gray-500 capitalize mr-5">
+                    Weight
+                  </p>
+                  <p className="text-xl font-semibold">{weight / 10} kg</p>
+                </div>
+                <div className="border-r border-gray-300 h-full"></div>
+
+                <div className="text-gray-700">
+                  <p className="text-base">{description}</p>
+                </div>
               </div>
+            </div>
+            <div className="flex flex-col justify-start">
               {stats.map((stat) => (
-                <div key={stat.stat.name} className="text-start ">
-                  <p className="text-lg">
-                    <span className="font-semibold capitalize">
-                      {stat.stat.name}:
-                    </span>{" "}
+                <div key={stat.stat.name} className="ml-16">
+                  <p className="text-lg font-semibold capitalize">
+                    {stat.stat.name}:
+                  </p>
+                  <p className="text-lg rounded-lg bg-white border-2 w-20 text-center">
                     {stat.base_stat}
                   </p>
                 </div>
               ))}
+              <div>
+                <a
+                  href="/pokemons"
+                  className="inline-block w-11 ml-80 mr-5 hover:translate-x-[-5px] transition-transform duration-100"
+                >
+                  <img
+                    src="/src/assets/14079449.png"
+                    alt="retour"
+                    style={{ transform: "rotate(-90deg)" }}
+                  />
+                </a>
+                <a href="/" className="inline-block">
+                  <div className="w-12 icon-rotate mx-auto">
+                    <img
+                      src="/src/assets/télécharger.png"
+                      alt="home"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
-          <a href="/" className="inline-block mt-4">
-            <div className="w-12 icon-rotate mx-auto">
-              <img
-                src="/src/assets/télécharger.png"
-                alt="home"
-                className="w-full h-auto"
-              />
-            </div>
-          </a>
         </div>
       </div>
     </div>
   );
 };
-
 export default PokemonInfos;
