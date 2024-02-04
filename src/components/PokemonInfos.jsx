@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Evolutions from "./Evolutions"; // Assurez-vous d'importer correctement le composant Evolutions
 import { useParams } from "react-router-dom";
 import "../index.css";
 
@@ -19,12 +20,10 @@ const PokemonInfos = () => {
         );
         const speciesData = await speciesResponse.json();
 
-        // Trouver la première description en anglais
         const englishDescription = speciesData.flavor_text_entries.find(
           (entry) => entry.language.name === "en"
         );
 
-        // Utiliser la description ou afficher un message par défaut
         setDescription(
           englishDescription
             ? englishDescription.flavor_text.replace(" ^ ", "")
@@ -203,6 +202,7 @@ const PokemonInfos = () => {
                 </div>
               </div>
             </div>
+
             <div className="flex flex-col justify-start">
               {stats.map((stat) => (
                 <div key={stat.stat.name} className="ml-16">
@@ -214,7 +214,11 @@ const PokemonInfos = () => {
                   </p>
                 </div>
               ))}
+
               <div>
+                <div className=" flex  justify-center ml-40 mt-[-250px] mb-24 ">
+                  <Evolutions pokemonName={name} />
+                </div>
                 <a
                   href="/pokemons"
                   className="inline-block w-11 ml-80 mr-5 hover:translate-x-[-5px] transition-transform duration-100"
