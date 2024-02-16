@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Pokemons from "./components/Pokemons";
-
+import { Link } from "react-router-dom";
 import PokemonInfos from "./components/PokemonInfos";
 
 // Composant Home
@@ -60,14 +60,13 @@ function Home() {
           <img src="/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
         <div className="flex justify-center gap-5 mt-40 w-40 mx-auto">
-          <a href="/src/components/Pokemons.jsx">
+          <Link to="/pokemons">
             <img
               src="/assets/1033032.png"
               alt=""
-              className="hover:translate-x-2 transition-transform duration-100
-              "
+              className="hover:translate-x-2 transition-transform duration-100"
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -80,8 +79,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/src/components/Pokemons.jsx" element={<Pokemons />} />
-
+        <Route path="/pokemons" element={<Pokemons />} />
         <Route path="/pokemons/:id" element={<PokemonInfos />} />
       </Routes>
     </Router>
