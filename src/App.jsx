@@ -60,7 +60,7 @@ function Home() {
           <img src="/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
         <div className="flex justify-center gap-5 mt-40 w-40 mx-auto">
-          <a href="/pokemons">
+          <a href="/src/components/Pokemons.jsx">
             <img
               src="/assets/1033032.png"
               alt=""
@@ -80,7 +80,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pokemons" element={<Pokemons />} />
+        <Route path="/src/components/Pokemons.jsx" element={<Pokemons />} />
 
         <Route path="/pokemons/:id" element={<PokemonInfos />} />
       </Routes>
