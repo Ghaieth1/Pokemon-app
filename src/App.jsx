@@ -60,7 +60,7 @@ function Home() {
           <img src="/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
         <div className="flex justify-center gap-5 mt-40 w-40 mx-auto">
-          <a href="/src/components/Pokemons.jsx">
+          <a href="/pokemons">
             <img
               src="/assets/1033032.png"
               alt=""
