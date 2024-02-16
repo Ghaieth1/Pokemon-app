@@ -185,7 +185,7 @@ const Pokemons = () => {
         <a href="/" className="inline-block ">
           <div className="w-12 icon-rotate">
             <img
-              src="/src/assets/télécharger.png"
+              src="/assets/télécharger.png"
               alt="home"
               className="w-full h-auto"
             />

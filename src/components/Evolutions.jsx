@@ -32,7 +32,7 @@ const Evolutions = ({ pokemonName }) => {
 
   const renderEvolution = (evolution) => (
     <div key={evolution.name} className="flex items-center gap-5 ">
-      {evolution.level && ( // Vérifie s'il y a un niveau d'évolution spécifié
+      {evolution.level && (
         <div className="mr-5 font-bold">
           <p>Lvl : {evolution.level}</p>
         </div>
@@ -51,7 +51,7 @@ const Evolutions = ({ pokemonName }) => {
     const parseChain = (evolutionDetails) => {
       if (evolutionDetails) {
         const evolution = {
-          id: evolutionDetails.species.url.split("/").reverse()[1], // Récupérer l'ID à partir de l'URL
+          id: evolutionDetails.species.url.split("/").reverse()[1],
           name: evolutionDetails.species.name,
           image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
             evolutionDetails.species.url.split("/").reverse()[1]

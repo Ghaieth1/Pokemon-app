@@ -224,7 +224,7 @@ const PokemonInfos = () => {
                   className="inline-block w-11 ml-80 mr-5 hover:translate-x-[-5px] transition-transform duration-100"
                 >
                   <img
-                    src="/src/assets/14079449.png"
+                    src="/assets/14079449.png"
                     alt="retour"
                     style={{ transform: "rotate(-90deg)" }}
                   />
@@ -232,7 +232,7 @@ const PokemonInfos = () => {
                 <a href="/" className="inline-block">
                   <div className="w-12 icon-rotate mx-auto">
                     <img
-                      src="/src/assets/télécharger.png"
+                      src="/assets/télécharger.png"
                       alt="home"
                       className="w-full h-auto"
                     />

@@ -10,7 +10,7 @@ function Home() {
       <div
         className="bg-cover bg-center bg-no-repeat p-8 rounded-lg border-8 border-white-500 shadow-2xl w-2/3 h-[872px] mx-auto my-8"
         style={{
-          backgroundImage: "url('src/assets/Pokemon-Wonder-1-_2_.jpg.png')",
+          backgroundImage: "url('/assets/Pokemon-Wonder-1-_2_.jpg.png')",
         }}
       >
         <span className="flex justify-end gap-5 text-white">
@@ -57,12 +57,12 @@ function Home() {
         </span>
 
         <div className="w-1/3 mx-auto h-2/4 mt-[-110px]">
-          <img src="/src/assets/Pokedex-logo.png" alt="pokedex-logo" />
+          <img src="/assets/Pokedex-logo.png" alt="pokedex-logo" />
         </div>
         <div className="flex justify-center gap-5 mt-40 w-40 mx-auto">
           <a href="/pokemons">
             <img
-              src="/src/assets/1033032.png"
+              src="/assets/1033032.png"
               alt=""
               className="hover:translate-x-2 transition-transform duration-100
               "
