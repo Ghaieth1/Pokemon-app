@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 const Evolutions = ({ pokemonName }) => {
   const [evolutions, setEvolutions] = useState([]);
@@ -23,7 +23,7 @@ const Evolutions = ({ pokemonName }) => {
           setEvolutions(evolutionsArray);
         }
       } catch (error) {
-        console.error("Error fetching evolutions:", error);
+        console.error('Error fetching evolutions:', error);
       }
     };
 
@@ -31,16 +31,16 @@ const Evolutions = ({ pokemonName }) => {
   }, [pokemonName]);
 
   const renderEvolution = (evolution) => (
-    <div key={evolution.name} className="flex items-center gap-5 ">
+    <div key={evolution.name} className='flex items-center gap-5 '>
       {evolution.level && (
-        <div className="mr-5 font-bold">
+        <div className='mr-5 font-bold'>
           <p>Lvl : {evolution.level}</p>
         </div>
       )}
       <img
         src={evolution.image}
         alt={evolution.name}
-        className="w-32 h-32 mr-2 bg-slate-200 rounded-full p-2 border-4 border-slate-300"
+        className='2xl:w-32 2xl:h-32 mr-2 bg-slate-200 rounded-full p-2 border-4 border-slate-300 xl:w-20 xl:h-20'
       />
     </div>
   );
@@ -51,10 +51,10 @@ const Evolutions = ({ pokemonName }) => {
     const parseChain = (evolutionDetails) => {
       if (evolutionDetails) {
         const evolution = {
-          id: evolutionDetails.species.url.split("/").reverse()[1],
+          id: evolutionDetails.species.url.split('/').reverse()[1],
           name: evolutionDetails.species.name,
           image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-            evolutionDetails.species.url.split("/").reverse()[1]
+            evolutionDetails.species.url.split('/').reverse()[1]
           }.png`,
           level:
             evolutionDetails.evolution_details.length > 0
@@ -76,7 +76,7 @@ const Evolutions = ({ pokemonName }) => {
     return result;
   };
 
-  return <div className="flex">{evolutions.map(renderEvolution)}</div>;
+  return <div className='flex'>{evolutions.map(renderEvolution)}</div>;
 };
 
 export default Evolutions;

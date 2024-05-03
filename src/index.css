@@ -31,3 +31,34 @@
 .rotate-animation:hover {
   animation: rotate 1s infinite linear;
 }
+
+@media only screen and (min-width: 1270px) and (max-width: 1500px) {
+  .pokemon-info-container {
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1480px) {
+  .pokemon-info-container {
+    max-width: 83%;
+  }
+}
+
+@media (min-width: 640px) {
+  .pokemon-info-container {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 639px) {
+  .pokemon-info-container {
+    max-width: 95%;
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 1300px) {
+  /* xl */
+  .text-gray-700 p {
+    display: none;
+  }
+}
